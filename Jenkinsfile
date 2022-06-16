@@ -2,7 +2,7 @@ pipeline {
   agent any
   parameters{
     choice(name: 'VERSION', choices: ['1.1','1.2','1.3'], description: "Version Choices")
-    booleanParam(name: 'executeTests', defaultvalue: true, description: 'Check for Tests'  )
+    booleanParam(name: 'executeTests', defaultValue: true, description: 'Check for Tests'  )
   }
   tools{
     gradle 'Gradle-7.4.2'
