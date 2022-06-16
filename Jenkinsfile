@@ -1,8 +1,12 @@
 pipeline {
   agent any
-  //tools{
-  //  gradle : Gradle-7.4.2
-  //}
+  parameters{
+    choice(name: 'VERSION' choices: ['1.1','1.2','1.3'], description: "Version Choices")
+    booleanParam(name: 'executeTests', defaultvalue: true, description: 'Check for Tests'  )
+  }
+  tools{
+    gradle 'Gradle-7.4.2'
+  }
   stages{
     stage("build front end") {
       steps{
@@ -15,9 +19,22 @@ pipeline {
     stage("build backend") {
       steps{
         echo "building the backend..."
-        withGradle{
-          sh './gradlew --version'
+        sh './gradlew --version'
+      }
+    }
+    stage("Test") {
+      when{
+        expression{
+          params.executeTests
         }
+      }
+      steps{
+        echo "Deploying the version : ${params.VERSION}"
+      }
+    }
+    stage("Deploy") {
+      steps{
+        echo "Deploying the version : ${params.VERSION}"
       }
     }
   }
