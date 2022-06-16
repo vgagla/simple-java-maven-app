@@ -1,7 +1,7 @@
 pipeline {
   agent any
   tools{
-    gradle Gradle-7.4.2
+    gradle : Gradle-7.4.2
   }
   stages{
     stage("build front end") {
