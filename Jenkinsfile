@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  tools{
+    gradle Gradle-7.4.2
+  }
   stages{
     stage("build front end") {
       steps{
@@ -12,9 +15,7 @@ pipeline {
     stage("build backend") {
       steps{
         echo "building the backend..."
-        withGradle(){
           sh './gradlew --version'
-        }
       }
     }
   }
