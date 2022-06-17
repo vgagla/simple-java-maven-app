@@ -3,14 +3,13 @@ pipeline {
   parameters{
     choice(name: 'VERSION', choices: ['1.1','1.2','1.3'], description: "Version Choices")
     booleanParam(name: 'executeTests', defaultValue: true, description: 'Check for Tests'  )
-  }
-  
-  stage("Build") {
-      steps{
-        echo "Building the version : ${params.VERSION}"
-      }
-  }
+  }  
   stages{
+    stage("Build") {
+        steps{
+         echo "Building the version : ${params.VERSION}"
+       }
+    }
     stage("Test") {
       when{
         expression{
