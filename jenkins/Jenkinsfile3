@@ -1,0 +1,9 @@
+ 
+node {
+    stage('Checkout') {
+        // checkout
+        def git = checkout scm
+        echo git.GIT_BRANCH.drop
+    }
+ 
+}
