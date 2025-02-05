@@ -1,1 +1,17 @@
 
+pipeline {
+    agent any
+    stages {
+        stage('checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('changeset') {
+            when { changeset "**/*.md" }
+            steps {
+                echo 'I am in the changeset'
+            }
+        }
+    }
+}
